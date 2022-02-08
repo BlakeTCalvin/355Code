@@ -37,12 +37,13 @@ max_date (x:xs) | dateHelper x (max_date xs) == x = x  -- first date was more re
 
 -- P4  num_paths  10%
 
-pathsHelper x y n | x == 1 && y == 1 = n = 1
-                  | x == 1 && y > 1 = n + num_paths (x-1) y n
-                  | otherwise = n + num_paths x (y-1) n
-
-num_paths x y = pathsHelper x y 0
+num_paths 1 1 = 1
+num_paths x y | x == 1 || y == 1 = 1
+              | otherwise = num_paths (x-1) y + num_paths x (y-1)
 
 -- P5  (a) find_courses 10%
+
+
+
 -- P5  (b) max_count  15%
 -- P6  split_at_duplicate -- 15%
