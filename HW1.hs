@@ -69,7 +69,7 @@ countHelper (a,b) (y,z) | length b > length z = (a, b)
                         | otherwise = (y, z)
 
 max_count [x] = x
-max_count (x:xs) | countHelper x (max_count xs) == x = x
+max_count ((a,b):xs) | countHelper (a,b) (max_count xs) == (a, b) = (a, b)
                  | otherwise = max_count xs
 
 -- P6  split_at_duplicate -- 15%
