@@ -64,4 +64,12 @@ find_courses (x:xs) y | elem y (snd x) = (fst x):(find_courses xs y)
                       | otherwise = find_courses xs y
 
 -- P5  (b) max_count  15%
+
+countHelper (a,b) (y,z) | length (b) > length (z) = (a, b)
+                        | otherwise = (y, z)
+
+max_count [x] = x
+max_count (x:xs) | countHelper x (max_count xs) == x = x
+                 | otherwise = max_count xs
+
 -- P6  split_at_duplicate -- 15%
