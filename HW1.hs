@@ -43,7 +43,25 @@ num_paths x y | x == 1 || y == 1 = 1
 
 -- P5  (a) find_courses 10%
 
+progLanguages = 
+     [ ("CptS121" , ["C"]), 
+     ("CptS122" , ["C++"]), 
+     ("CptS223" , ["C++"]), 
+     ("CptS233" , ["Java"]), 
+     ("CptS321" , ["C#"]), 
+     ("CptS322" , ["Python", "JavaScript"]), 
+     ("CptS355" , ["Haskell", "Python", "PostScript", "Java"]), 
+     ("CptS360" , ["C"]), 
+     ("CptS370" , ["Java"]), 
+     ("CptS315" , ["Python"]), 
+     ("CptS411" , ["C", "C++"]), 
+     ("CptS451" , ["Python", "C#", "SQL"]), 
+     ("CptS475" , ["Python", "R"]) 
+     ] 
 
+find_courses [] y = []
+find_courses (x:xs) y | elem y (snd x) = (fst x):(find_courses xs y)   
+                      | otherwise = find_courses xs y
 
 -- P5  (b) max_count  15%
 -- P6  split_at_duplicate -- 15%
