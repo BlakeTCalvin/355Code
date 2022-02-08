@@ -65,7 +65,7 @@ find_courses (x:xs) y | elem y (snd x) = (fst x):(find_courses xs y)
 
 -- P5  (b) max_count  15%
 
-countHelper (a,b) (y,z) | length (b) > length (z) = (a, b)
+countHelper (a,b) (y,z) | length b > length z = (a, b)
                         | otherwise = (y, z)
 
 max_count [x] = x
@@ -73,3 +73,11 @@ max_count (x:xs) | countHelper x (max_count xs) == x = x
                  | otherwise = max_count xs
 
 -- P6  split_at_duplicate -- 15%
+
+split_at_duplicate [] = [] -- a base case
+split_at_duplicate (x:xs) = splitHelper xs x [x] -- invoking our splitHelper
+     where
+          splitHelper [] y buf | (buf == []) = [] -- checking if our buf is empty
+                               | otherwise = (reverse buf): [] --if not empty cons into list
+          splitHelper (x:xs) y buf | (x == y) = (reverse buf):(splitHelper xs x ([y])) -- check if value is equal to the next one over (duplicate)
+                                   | otherwise = splitHelper xs x (x:buf) -- basically just contiuing the recursion
